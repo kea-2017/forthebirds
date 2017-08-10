@@ -3,7 +3,6 @@ const getGreetings = (db) => {
     .select('*')
 }
 
-
 module.exports = {
   getGreetings
 }

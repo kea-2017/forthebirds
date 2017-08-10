@@ -3,6 +3,16 @@ var router = express.Router()
 
 var birdsDb = require('../db/birds')
 
+router.get('/', (req, res) =>{
+  let db = req.app.get('db')
+  birdsDb.getBirds(db)
+    .then(birds => {
+      res.json(birds)
+    })
+
+  // birdsDb.getBirds(db).then(birds => res.json(birds))
+})
+
 router.post('/', (req, res) => {
   let db = req.app.get('db')
   console.log(req.body);
