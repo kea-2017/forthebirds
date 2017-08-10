@@ -11,6 +11,7 @@ const Greetings = (props) => (
   <div>
     <button onClick={() => props.dispatch(getGreetings())}>Show Greetings</button>
     {props.greetings.map(renderGreeting)}
+
   </div>
 )
 

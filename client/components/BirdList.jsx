@@ -9,7 +9,6 @@ const renderBirds = (bird, key) => (
 
 const Birds = ({birds, dispatch}) => (
   <div>
-    <button onClick={() => dispatch(getBirds())}>Show Birds</button>
     {birds.map(renderBirds)}
   </div>
 )
