@@ -20,3 +20,5 @@ module.exports = function(db) {
   server.set('db', db)
   return server
 }
+
+//need to add .use for the countries api. 

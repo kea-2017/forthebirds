@@ -1,7 +1,5 @@
 import request from 'superagent'
 
-
-
 export function insertBird(bird, callback) {
   console.log("Hey, Bird details:" + bird)
   request

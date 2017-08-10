@@ -7,10 +7,11 @@ const renderGreeting = (greeting, key) => (
   <h1 key={key}>{greeting.text}</h1>
 )
 
-const Greetings = ({greetings, dispatch}) => (
+const Greetings = (props) => (
   <div>
-    <button onClick={() => dispatch(getGreetings())}>Show Greetings</button>
-    {greetings.map(renderGreeting)}
+    <button onClick={() => props.dispatch(getGreetings())}>Show Greetings</button>
+    {props.greetings.map(renderGreeting)}
+
   </div>
 )
 
