@@ -11,6 +11,7 @@ const Greetings = ({greetings, dispatch}) => (
   <div>
     <button onClick={() => dispatch(getGreetings())}>Show Greetings</button>
     {greetings.map(renderGreeting)}
+    {greetings.map((greeting, key) => renderGreeting(greeting, key))}
   </div>
 )
 
