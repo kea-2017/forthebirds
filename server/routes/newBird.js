@@ -1,14 +1,16 @@
 var express = require('express')
 var router = express.Router()
 
-var greetingsDb = require('../db/greeting')
+var birdsDb = require('../db/birds')
 
-router.get('/', (req, res) => {
+router.post('/', (req, res) => {
   let db = req.app.get('db')
-  greetingsDb.getGreetings(db)
-    .then(greetings => {
-      res.json(greetings)
+  console.log(req.body);
+  birdsDb.insertBird(req.body, db)
+    .then(bird => {
+      res.json(bird)
     })
 })
+
 
 module.exports = router

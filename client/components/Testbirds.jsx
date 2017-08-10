@@ -1,5 +1,5 @@
 import React from 'react'
-import { insertBirds } from '../api'
+import { insertBird } from '../api'
 
 export default class Testbirds extends React.Component {
   constructor(props) {
@@ -41,15 +41,14 @@ export default class Testbirds extends React.Component {
       <input name="description" placeholder="enter description" type="text" onChange={(e) => this.updateBirdDetails(e)}/>
 
       <h4>Bird Image</h4>
-      <input name="image" placeholder="URL here" type="text" onChange={(e) => this.updateBirdDetails(e)}/>
+      <input name="imageUrl" placeholder="URL here" type="text" onChange={(e) => this.updateBirdDetails(e)}/>
 
       <p>Select a Country of Origin :
-      <select name="animalcountry" onChange={(e) => this.updateBirdDetails(e)}>
+      <select name="country_id" onChange={(e) => this.updateBirdDetails(e)}>
         <option selected disabled>Where does this bird fligh from?</option>
         <option value="1"> New Zealand</option>
         <option value="2"> United States of America</option>
         <option value="3"> Ireland</option>
-        <option value="4"> Poland</option>
       </select>
       </p>
 

@@ -13321,7 +13321,7 @@ function getGreetings() {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.insertBirds = insertBirds;
+exports.insertBird = insertBird;
 
 var _superagent = __webpack_require__(107);
 
@@ -13329,16 +13329,12 @@ var _superagent2 = _interopRequireDefault(_superagent);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var requestUrl = 'http://localhost:3000/#/testbird';
-
-function insertBirds(bird, callback) {
+function insertBird(bird, callback) {
   console.log("Hey, Bird details:" + bird);
-  _superagent2.default.post(requestUrl + '/v1').send(bird).end(function (err, res) {
+  _superagent2.default.post('/v1/testbird').send(bird).end(function (err, res) {
     if (err) {
       callback(err);
-      document.location = '/error';
     } else {
-      document.location = '/thanks';
       callback(null);
     }
   });
@@ -13453,7 +13449,7 @@ var Testbirds = function (_React$Component) {
     value: function submitBird(e) {
       e.preventDefault();
       console.log(this.state.bird);
-      insertBird(this.state.bird, this.finishAdd.bind(this));
+      (0, _api.insertBird)(this.state.bird, this.finishAdd.bind(this));
     }
   }, {
     key: 'finishAdd',
@@ -13496,7 +13492,7 @@ var Testbirds = function (_React$Component) {
             null,
             'Bird Image'
           ),
-          _react2.default.createElement('input', { name: 'image', placeholder: 'URL here', type: 'text', onChange: function onChange(e) {
+          _react2.default.createElement('input', { name: 'imageUrl', placeholder: 'URL here', type: 'text', onChange: function onChange(e) {
               return _this2.updateBirdDetails(e);
             } }),
           _react2.default.createElement(
@@ -13505,7 +13501,7 @@ var Testbirds = function (_React$Component) {
             'Select a Country of Origin :',
             _react2.default.createElement(
               'select',
-              { name: 'animalcountry', onChange: function onChange(e) {
+              { name: 'country_id', onChange: function onChange(e) {
                   return _this2.updateBirdDetails(e);
                 } },
               _react2.default.createElement(
@@ -13527,11 +13523,6 @@ var Testbirds = function (_React$Component) {
                 'option',
                 { value: '3' },
                 ' Ireland'
-              ),
-              _react2.default.createElement(
-                'option',
-                { value: '4' },
-                ' Poland'
               )
             )
           ),
