@@ -3,6 +3,12 @@ function insertBird(bird, db) {
     .insert(bird)
 }
 
+const getBirds = (db) => {
+  return db('birds')
+    .select('*')
+}
+
 module.exports = {
-    insertBird
+    insertBird,
+    getBirds
 }
