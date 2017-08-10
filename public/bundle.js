@@ -13514,7 +13514,7 @@ var renderBird = function renderBird(bird) {
       null,
       bird.country
     ),
-    _react2.default.createElement('img', { src: bird.image, width: '500px', height: '300px' })
+    _react2.default.createElement('img', { src: bird.imageUrl, width: '500px', height: '300px' })
   );
 };
 

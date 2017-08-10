@@ -8,7 +8,7 @@ const renderBird = (bird) => (
     <p>{bird.name}</p>
     <p>{bird.description}</p>
     <p>{bird.country}</p>
-     <img src={bird.image} width="500px" height="300px" />
+     <img src={bird.imageUrl} width="500px" height="300px" />
   </div>
 )
 
