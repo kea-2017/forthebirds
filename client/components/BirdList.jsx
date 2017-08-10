@@ -1,16 +1,22 @@
-
 import React from 'react'
-import BirdDetails from './BirdDetails'
+import {connect} from 'react-redux'
+import { Link } from 'react-router-dom'
+import {getBirds} from '../actions/birds'
 
-export default function BirdList ({birds}) {
-  return (
-    <div>
-      {birds.map((bird, i) => (
-        <BirdDetails bird={bird} key={i} />
-      ))}
-    </div>
-  )
+const renderBirds = (bird, key) => (
+  <Link to={'/birds/' + bird.id}  key={key}><h3>{bird.name}</h3></Link>
+)
+
+const Birds = ({birds, dispatch}) => (
+  <div>
+    <button onClick={() => dispatch(getBirds())}>Show Birds</button>
+    {birds.map(renderBirds)}
+  </div>
+)
+
+const mapStateToProps = (state) => {
+return {birds: state.birds}
+
 }
 
-
-  <Link to='/bird'><a href="#" onClick={()=> dispatch(showBird(bird))}>See details</a></Link>
+export default connect(mapStateToProps)(Birds)
