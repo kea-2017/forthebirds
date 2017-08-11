@@ -26,7 +26,8 @@ class BirdDetails extends React.Component {
       <p>{bird.country}</p>
       <img src={bird.imageUrl} width="500px" height="300px"/><br/>
       <button onClick={this.toggleForm.bind(this)}>Edit bird</button><br/>
-      <button onClick={() => dispatch(deleteBirdAction(bird))}>Lose bird</button>
+      <button onClick={() => dispatch(deleteBirdAction(bird))
+        }>Lose bird</button>
           </div>
     )
 
@@ -36,7 +37,7 @@ class BirdDetails extends React.Component {
         <Link to='/'>Home</Link>
         {bird
           ? renderBird(bird)
-          : document.location = '/'
+          : this.props.history.push('/')
         }
         {this.state.showForm ? 'form' : 'no-form'}
       </div>
