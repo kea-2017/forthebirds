@@ -12,10 +12,10 @@ export function deleteBirdRequest (bird) {
     request
       .delete('/api/bird/' + bird.id)
       .end((err, res) => {
-        // if (err){
-        //   console.log(err.message);
-        //   return
-        // }
+        if (err){
+          console.log(err.message);
+          return
+        }
         dispatch(deleteBirdAction(bird))
       })
   }
