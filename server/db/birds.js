@@ -3,6 +3,20 @@ function insertBird(bird, db) {
     .insert(bird)
 }
 
+const getBirds = (db) => {
+  return db('birds')
+    .select('*')
+}
+
+function editBird(bird, db){
+  return db('birds')
+    .where('id', bird.id)
+    .update(bird)
+}
+
+
 module.exports = {
-    insertBird
+    insertBird,
+    editBird,
+    getBirds
 }

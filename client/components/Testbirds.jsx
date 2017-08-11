@@ -1,7 +1,8 @@
 import React from 'react'
 import { insertBird } from '../api'
+import {connect} from 'react-redux'
 
-export default class Testbirds extends React.Component {
+class Testbirds extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -43,18 +44,30 @@ export default class Testbirds extends React.Component {
       <h4>Bird Image</h4>
       <input name="imageUrl" placeholder="URL here" type="text" onChange={(e) => this.updateBirdDetails(e)}/>
 
-      <p>Select a Country of Origin :
+      <p>Select a Country of Origin : </p>
       <select name="country_id" onChange={(e) => this.updateBirdDetails(e)}>
-        <option selected disabled>Where does this bird fligh from?</option>
-        <option value="1"> New Zealand</option>
-        <option value="2"> United States of America</option>
-        <option value="3"> Ireland</option>
+        <option selected disabled>Where does this bird fly from?</option>
+        {this.props.countries.map((country) => {
+          return (
+            <option value={country.id}>{country.name}</option>
+            )
+          })}
       </select>
-      </p>
 
       <p></p><input type="submit" /> <input type="submit" value="clear" onClick="" />
     </form>
     </div>
     )
   }
+
 }
+function mapStateToProps(state) {
+  return {
+    countries: state.countries
+  }
+}
+
+  export default connect (mapStateToProps)(Testbirds)
+  // <!-- get the options form the props map over them to make the option list-->
+  // make this a connected Component and get the countries from the state.
+  // on Component did mount dispatch an action to load all countries from the api.
