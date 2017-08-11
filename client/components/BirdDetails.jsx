@@ -3,33 +3,50 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {getBirds} from '../actions/birds'
 import {deleteBirdAction} from '../actions/deleteBird'
+import {editBirdAction} from '../actions/editBird'
 
-const renderBird = (bird, dispatch) => (
-  <div>
-    <p>{bird.name}</p>
-    <p>{bird.description}</p>
-    <p>{bird.country}</p>
-    <img src={bird.imageUrl} width="500px" height="300px"/>
-    <button onClick={() => dispatch(deleteBirdAction(bird))}>Lose bird</button>
+class BirdDetails extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      showForm: false
+    }
+  }
+  toggleForm() {
+    this.setState({
+      showForm: !this.state.showForm
+    })
+  }
+  render() {
+    const {birds, dispatch, id} = this.props
+    const renderBird = (bird) => (
+      <div>
+      <p>{bird.name}</p>
+      <p>{bird.description}</p>
+      <p>{bird.country}</p>
+      <img src={bird.imageUrl} width="500px" height="300px"/><br/>
+      <button onClick={this.toggleForm.bind(this)}>Edit bird</button><br/>
+      <button onClick={() => dispatch(deleteBirdAction(bird))}>Lose bird</button>
+          </div>
+    )
 
-  </div>
-)
-
-const BirdDetails = ({birds, dispatch, id}) => {
-  let bird = birds.find(bird => bird.id == id)
-  return (
-    <div>
-      <Link to='/'>Home</Link>
-      {bird
-        ? renderBird(bird, dispatch)
-        : document.location = '/'
-      }
-    </div>
-  )
+    let bird = birds.find(bird => bird.id == id)
+    return (
+      <div>
+        <Link to='/'>Home</Link>
+        {bird
+          ? renderBird(bird)
+          : document.location = '/'
+        }
+        {this.state.showForm ? 'form' : 'no-form'}
+      </div>
+    )
+  }
 }
-const mapStateToProps = (state) => {
-  console.log(state.birds);
-  return {birds: state.birds}
-}
 
+function mapStateToProps(state) {
+  return {
+    birds: state.birds
+  }
+}
 export default connect(mapStateToProps)(BirdDetails)
