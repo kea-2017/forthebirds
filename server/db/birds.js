@@ -8,7 +8,14 @@ const getBirds = (db) => {
     .select('*')
 }
 
+function delBird(bird_id, db) {
+  return db('birds')
+    .where('id', bird_id)
+    .del()
+}
+
 module.exports = {
     insertBird,
-    getBirds
+    getBirds,
+    delBird
 }
