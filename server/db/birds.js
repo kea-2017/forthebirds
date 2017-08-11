@@ -8,15 +8,20 @@ const getBirds = (db) => {
     .select('*')
 }
 
+function delBird(bird_id, db) {
+  return db('birds')
+    .where('id', bird_id)
+    .del()
+}
+
 function editBird(bird, db){
   return db('birds')
     .where('id', bird.id)
     .update(bird)
 }
-
-
 module.exports = {
     insertBird,
-    editBird,
-    getBirds
-}
+    getBirds,
+    delBird,
+    editBird
+  }
