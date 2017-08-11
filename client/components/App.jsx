@@ -33,7 +33,7 @@ class App extends React.Component {
         <Router>
           <div className="router">
             <Route exact path="/" component={BirdList}/> {this.state.showForm && <Route exact path="/" component={Testbirds}/>}
-            <Route path='/birds/:id' component={(props) => <BirdDetails id={props.match.params.id}/>}/>
+            <Route path='/birds/:id' component={(props) => <BirdDetails id={props.match.params.id} history={props.history}/>}/>
           </div>
         </Router>
         <button onClick={() => this.toggleForm()}>{this.state.showForm

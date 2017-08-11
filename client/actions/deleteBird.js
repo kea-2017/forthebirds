@@ -10,7 +10,7 @@ export const deleteBirdAction = (bird) => {
 export function deleteBirdRequest (bird) {
   return (dispatch) => {
     request
-      .delete('/api/bird/' + bird.id)
+      .delete('/api/birds/' + bird.id)
       .end((err, res) => {
         if (err){
           console.log(err.message);
