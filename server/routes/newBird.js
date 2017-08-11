@@ -9,6 +9,9 @@ router.get('/', (req, res) =>{
     .then(birds => {
       res.json(birds)
     })
+    .catch(function(err){
+      res.status(500).send(err.message)
+    })
 
   // birdsDb.getBirds(db).then(birds => res.json(birds))
 })
@@ -19,6 +22,26 @@ router.post('/', (req, res) => {
   birdsDb.insertBird(req.body, db)
     .then(bird => {
       res.json(bird)
+    })
+    .catch(function(err){
+      res.status(500).send(err.message)
+    })
+})
+
+router.post('/:id', (req, res) => {
+  let db = req.app.get('db')
+  var editaBird = {
+    id: req.params.id,
+    name: req.body.name,
+    description: req.body.description,
+    imageUrl: req.body.imageUrl,
+    country_id: req.body.country_id
+  }
+  console.log(editaBird);
+  birdsDb.editBird(editaBird, db)
+    .then()
+    .catch(function(err){
+      res.status(500).send(err.message)
     })
 })
 
