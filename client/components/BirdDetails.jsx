@@ -2,7 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {getBirds} from '../actions/birds'
-import {deleteBirdAction} from '../actions/deleteBird'
+import {deleteBirdRequest} from '../actions/deleteBird'
 import {editBirdAction} from '../actions/editBird'
 
 class BirdDetails extends React.Component {
@@ -16,7 +16,7 @@ class BirdDetails extends React.Component {
     this.setState({
       showForm: !this.state.showForm
     })
-  }
+  }deleteBirdAction
   render() {
     const {birds, dispatch, id} = this.props
     const renderBird = (bird) => (
@@ -26,7 +26,7 @@ class BirdDetails extends React.Component {
       <p>{bird.country}</p>
       <img src={bird.imageUrl} width="500px" height="300px"/><br/>
       <button onClick={this.toggleForm.bind(this)}>Edit bird</button><br/>
-      <button onClick={() => dispatch(deleteBirdAction(bird))
+      <button onClick={() => dispatch(deleteBirdRequest(bird))
         }>Lose bird</button>
           </div>
     )
