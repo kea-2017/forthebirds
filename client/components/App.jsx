@@ -7,7 +7,6 @@ import {connect} from 'react-redux'
 import {getBirds} from '../actions/birds'
 import {getCountries} from '../actions/countries'
 
-
 class App extends React.Component {
   constructor(props) {
     super(props)
@@ -23,27 +22,29 @@ class App extends React.Component {
     this.props.dispatch(getBirds())
   }
   toggleForm() {
-    this.setState({showForm: !this.state.showForm})
+    this.setState({
+      showForm: !this.state.showForm
+    })
   }
-  render(){
-    return(
+  render() {
+    return (
       <div className='app-container'>
         <h1>Birds</h1>
         <Router>
           <div className="router">
-            <Route exact path="/" component={BirdList} />
-            {this.state.showForm && <Route exact path="/" component={Testbirds} />}
-            <Route path='/birds/:id' component={(props) => <BirdDetails id={props.match.params.id} />} />
+            <Route exact path="/" component={BirdList}/> {this.state.showForm && <Route exact path="/" component={Testbirds}/>}
+            <Route path='/birds/:id' component={(props) => <BirdDetails id={props.match.params.id}/>}/>
           </div>
         </Router>
-        <button onClick={() => this.toggleForm()}>{this.state.showForm ? 'Cancel' : 'Add Bird'}</button>
+        <button onClick={() => this.toggleForm()}>{this.state.showForm
+            ? 'Cancel'
+            : 'Add Bird'}</button>
       </div>
     )
   }
 }
 
 //these all do the same thing
-// <Route path="/birds/:id" component={(props) => <BirdDetails {...props} />} />
 // <Route path="/birds/:id" component={(props) => <BirdDetails {...props} />} />
 // <Route path="/birds/:id" component={BirdDetails} />
 export default connect()(App)
