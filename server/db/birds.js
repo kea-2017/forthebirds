@@ -5,7 +5,9 @@ function insertBird(bird, db) {
 
 const getBirds = (db) => {
   return db('birds')
-    .select('*')
+    //.select('*')
+      .select('birds.*', 'countries.name as country')
+      .join('countries', 'birds.country_id', 'countries.id')
 }
 
 function delBird(bird_id, db) {
