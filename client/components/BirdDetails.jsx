@@ -10,21 +10,17 @@ class BirdDetails extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      showForm: false,
-      initialBird: false
+      showForm: false
     }
   }
-
   toggleForm() {
     this.setState({
       showForm: !this.state.showForm
     })
   }
-
   updateBird(bird){
     this.props.dispatch(editBirdRequest(bird))
   }
-
   render() {
     const {birds, dispatch, id} = this.props
     const renderBird = (bird) => (
@@ -43,10 +39,11 @@ class BirdDetails extends React.Component {
     return (
       <div>
         <Link to='/'>Home</Link>
-        {bird ? renderBird(bird) : this.props.history.push('/')
+        {bird
+          ? renderBird(bird)
+          : this.props.history.push('/')
         }
         {this.state.showForm ? <BirdForm bird={bird} onSubmit={this.updateBird.bind(this)}/> : ''}
-
       </div>
     )
   }

@@ -2,7 +2,7 @@ var path = require('path')
 var express = require('express')
 var bodyParser = require('body-parser')
 var cors = require('cors')
-var editBird = require('./routes/Bird')
+var editBird = require('./routes/editBird')
 var newBird = require('./routes/newBird')
 var delBird = require('./routes/delBird')
 var greetings = require('./routes/greeting')
@@ -23,7 +23,7 @@ server.use('/api/countries', countries)
 
 server.use('/v1/testbird', newBird )
 
-server.use('/api/bird/', editBird )
+server.use('/api/bird', editBird )
 
 module.exports = function(db) {
   server.set('db', db)
