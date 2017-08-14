@@ -4,19 +4,29 @@ import {Link} from 'react-router-dom'
 import {getBirds} from '../actions/birds'
 import {deleteBirdRequest} from '../actions/deleteBird'
 import {editBirdAction} from '../actions/editBird'
+import BirdForm from './BirdForm'
 
 class BirdDetails extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      showForm: false
+      showForm: false,
+      initialBird: false
     }
   }
+
   toggleForm() {
     this.setState({
       showForm: !this.state.showForm
     })
   }deleteBirdAction
+
+  setInitialState(){
+    this.setState({
+      initialBird: !this.state.bird.id
+    })
+  }
+
   render() {
     const {birds, dispatch, id} = this.props
     const renderBird = (bird) => (
@@ -35,11 +45,10 @@ class BirdDetails extends React.Component {
     return (
       <div>
         <Link to='/'>Home</Link>
-        {bird
-          ? renderBird(bird)
-          : this.props.history.push('/')
+        {bird ? renderBird(bird) : this.props.history.push('/')
         }
-        {this.state.showForm ? 'form' : 'no-form'}
+        {this.state.showForm ? <BirdForm bird={bird} onSubmit={this.saveBird}/> : ''}
+
       </div>
     )
   }
