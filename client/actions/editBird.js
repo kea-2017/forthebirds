@@ -10,7 +10,8 @@ export const editBirdAction = (bird) => {
 export function editBirdRequest (bird) {
   return (dispatch) => {
     request
-    .update('/api/bird/' + bird.id)
+    .put('/api/bird/' + bird.id)
+    .send(bird)
     .end((err, res) => {
       if (err){
         console.log(err.message);

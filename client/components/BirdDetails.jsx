@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {getBirds} from '../actions/birds'
 import {deleteBirdRequest} from '../actions/deleteBird'
-import {editBirdAction} from '../actions/editBird'
+import {editBirdRequest} from '../actions/editBird'
 import BirdForm from './BirdForm'
 
 class BirdDetails extends React.Component {
@@ -19,12 +19,10 @@ class BirdDetails extends React.Component {
     this.setState({
       showForm: !this.state.showForm
     })
-  }deleteBirdAction
+  }
 
-  setInitialState(){
-    this.setState({
-      initialBird: !this.state.bird.id
-    })
+  updateBird(bird){
+    this.props.dispatch(editBirdRequest(bird))
   }
 
   render() {
@@ -47,7 +45,7 @@ class BirdDetails extends React.Component {
         <Link to='/'>Home</Link>
         {bird ? renderBird(bird) : this.props.history.push('/')
         }
-        {this.state.showForm ? <BirdForm bird={bird} onSubmit={this.saveBird}/> : ''}
+        {this.state.showForm ? <BirdForm bird={bird} onSubmit={this.updateBird.bind(this)}/> : ''}
 
       </div>
     )

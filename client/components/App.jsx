@@ -6,6 +6,7 @@ import BirdForm from './BirdForm'
 import {connect} from 'react-redux'
 import {getBirds} from '../actions/birds'
 import {getCountries} from '../actions/countries'
+import {insertBird} from '../api'
 
 class App extends React.Component {
   constructor(props) {
@@ -27,7 +28,7 @@ class App extends React.Component {
     })
   }
   saveBird(bird){
-    insertBird(bird, this.finishAdd.bind(this))
+    insertBird(bird, console.log)
   }
   render() {
     return (

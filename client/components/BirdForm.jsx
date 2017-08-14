@@ -6,9 +6,17 @@ import {connect} from 'react-redux'
 class BirdForm extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {
-      bird: {
-        country_id: 1
+    console.log(props)
+    if (props.bird) {
+      this.state = {
+        bird: this.props.bird
+      }
+    } else {
+      this.state = {
+        bird: {
+          country_id: 1
+        }
+
       }
     }
     this.submitBird = this.submitBird.bind(this)
@@ -19,7 +27,7 @@ class BirdForm extends React.Component {
     bird[e.target.name] = e.target.value
     //do something
     this.setState({bird: bird})
-    //console.log("the Address is:", this.state.bird);
+    console.log("the Address is:", this.state.bird);
   }
 
   submitBird(e) {
@@ -36,24 +44,24 @@ class BirdForm extends React.Component {
 
 
   render() {
-    console.log(this.props.bird);
+    console.log(this.state.bird);
     return (
       <div>
         <form onSubmit={e => this.submitBird(e)}>
 
           <h4>Bird name</h4>
-          <input name="name" value={this.props.bird ? this.props.bird.name : ''} type="text" onChange={(e) => this.updateBirdDetails(e)}/>
+          <input name="name" value={this.state.bird ? this.state.bird.name : ''} type="text" onChange={(e) => this.updateBirdDetails(e)}/>
 
           <h4>Bird Description
           </h4>
-          <input name="description" value={this.props.bird ? this.props.bird.description : ''} placeholder="enter description" type="text" onChange={(e) => this.updateBirdDetails(e)}/>
+          <input name="description" value={this.state.bird ? this.state.bird.description : ''} placeholder="enter description" type="text" onChange={(e) => this.updateBirdDetails(e)}/>
 
           <h4>Bird Image</h4>
-          <input name="imageUrl" value={this.props.bird ? this.props.bird.imageUrl : ''} placeholder="URL here" type="text" onChange={(e) => this.updateBirdDetails(e)}/>
+          <input name="imageUrl" value={this.state.bird ? this.state.bird.imageUrl : ''} placeholder="URL here" type="text" onChange={(e) => this.updateBirdDetails(e)}/>
 
           <p>Select a Country of Origin :
           </p>
-          <select defaultValue={this.props.bird ? this.props.bird.country_id : ''} name="country_id" onChange={(e) => this.updateBirdDetails(e)}>
+          <select defaultValue={this.state.bird ? this.state.bird.country_id : ''} name="country_id" onChange={(e) => this.updateBirdDetails(e)}>
             <option selected disabled>Where does this bird fly from?</option>
             {this.props.countries.map((country, i) => {
               return (
@@ -71,7 +79,7 @@ class BirdForm extends React.Component {
 
 }
 function mapStateToProps(state) {
-  return {birds: state.birds, countries: state.countries}
+  return {countries: state.countries}
 }
 
 export default connect(mapStateToProps)(BirdForm)
