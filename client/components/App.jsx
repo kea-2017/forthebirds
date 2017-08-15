@@ -6,7 +6,6 @@ import BirdForm from './BirdForm'
 import {connect} from 'react-redux'
 import {getBirds} from '../actions/birds'
 import {getCountries} from '../actions/countries'
-import {insertBird} from '../api'
 
 class App extends React.Component {
   constructor(props) {
@@ -22,13 +21,13 @@ class App extends React.Component {
   componentDidUpdate() {
     this.props.dispatch(getBirds())
   }
+  saveBird(bird){
+     insertBird(bird, console.log)
+  }
   toggleForm() {
     this.setState({
       showForm: !this.state.showForm
     })
-  }
-  saveBird(bird){
-    insertBird(bird, console.log)
   }
   render() {
     return (
@@ -36,15 +35,13 @@ class App extends React.Component {
         <h1>Birds</h1>
         <Router>
           <div className="router">
-            <Route exact path="/" component={BirdList}/>
-            {this.state.showForm && <Route exact path="/" render={(props) => <BirdForm onSubmit={this.saveBird} {...props} /> } /> }
+            <Route exact path="/" component={BirdList}/> {this.state.showForm && <Route exact path="/" component={BirdForm}/>}
             <Route path='/birds/:id' component={(props) => <BirdDetails id={props.match.params.id} history={props.history}/>}/>
-            <button onClick={() => this.toggleForm()}>{this.state.showForm
-              ? 'Cancel'
-              : 'Leave Me Alone'}</button>
-        </div>
+          </div>
         </Router>
-
+        <button onClick={() => this.toggleForm()}>{this.state.showForm
+            ? 'Cancel'
+            : 'Add Bird'}</button>
       </div>
     )
   }

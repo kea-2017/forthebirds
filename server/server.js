@@ -23,7 +23,7 @@ server.use('/api/countries', countries)
 
 server.use('/v1/testbird', newBird )
 
-server.use('/api/bird/', editBird )
+server.use('/api/bird', editBird )
 
 module.exports = function(db) {
   server.set('db', db)

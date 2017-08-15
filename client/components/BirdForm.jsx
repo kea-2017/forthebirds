@@ -31,8 +31,9 @@ class BirdForm extends React.Component {
   }
 
   submitBird(e) {
-    //e.preventDefault()
     //console.log(this.state.bird)
+    e.preventDefault()
+    console.log(this.state.bird)
     this.props.onSubmit(this.state.bird)
     //insertBird(this.state.bird, this.finishAdd.bind(this))
   }
