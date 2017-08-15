@@ -2,7 +2,7 @@ import React from 'react'
 import {HashRouter as Router, Route} from 'react-router-dom'
 import BirdList from './BirdList'
 import BirdDetails from './BirdDetails'
-import Testbirds from './Testbirds'
+import BirdForm from './BirdForm'
 import {connect} from 'react-redux'
 import {getBirds} from '../actions/birds'
 import {getCountries} from '../actions/countries'
@@ -21,6 +21,9 @@ class App extends React.Component {
   componentDidUpdate() {
     this.props.dispatch(getBirds())
   }
+  saveBird(bird){
+     insertBird(bird, console.log)
+  }
   toggleForm() {
     this.setState({
       showForm: !this.state.showForm
@@ -32,7 +35,7 @@ class App extends React.Component {
         <h1>Birds</h1>
         <Router>
           <div className="router">
-            <Route exact path="/" component={BirdList}/> {this.state.showForm && <Route exact path="/" component={Testbirds}/>}
+            <Route exact path="/" component={BirdList}/> {this.state.showForm && <Route exact path="/" component={BirdForm}/>}
             <Route path='/birds/:id' component={(props) => <BirdDetails id={props.match.params.id} history={props.history}/>}/>
           </div>
         </Router>

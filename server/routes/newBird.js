@@ -28,22 +28,5 @@ router.post('/', (req, res) => {
     })
 })
 
-router.post('/:id', (req, res) => {
-  let db = req.app.get('db')
-  var editaBird = {
-    id: req.params.id,
-    name: req.body.name,
-    description: req.body.description,
-    imageUrl: req.body.imageUrl,
-    country_id: req.body.country_id
-  }
-  console.log(editaBird);
-  birdsDb.editBird(editaBird, db)
-    .then()
-    .catch(function(err){
-      res.status(500).send(err.message)
-    })
-})
-
 
 module.exports = router
