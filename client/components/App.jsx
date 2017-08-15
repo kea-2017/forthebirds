@@ -6,6 +6,7 @@ import BirdForm from './BirdForm'
 import {connect} from 'react-redux'
 import {getBirds} from '../actions/birds'
 import {getCountries} from '../actions/countries'
+import {insertBird} from '../api'
 
 class App extends React.Component {
   constructor(props) {
@@ -35,7 +36,8 @@ class App extends React.Component {
         <h1>Birds</h1>
         <Router>
           <div className="router">
-            <Route exact path="/" component={BirdList}/> {this.state.showForm && <Route exact path="/" component={BirdForm}/>}
+            <Route exact path="/" component={BirdList}/>
+             {this.state.showForm && <Route exact path="/"render={(props) => <BirdForm onSubmit={this.saveBird} {...props} /> } /> }
             <Route path='/birds/:id' component={(props) => <BirdDetails id={props.match.params.id} history={props.history}/>}/>
           </div>
         </Router>
