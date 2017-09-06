@@ -10,13 +10,13 @@ export const receiveBirds = (birds) => {
 export function getBirds () {
   return (dispatch) => {
     request
-      .get(`/api/birds`)
-      .end((err, res) => {
-        if (err) {
-          console.error(err.message)
-          return
-        }
-        dispatch(receiveBirds(res.body))
-      })
+    .get(`/api/birds`)
+    .end((err, res) => {
+      if (err) {
+        console.error(err.message)
+        return
+      }
+      dispatch(receiveBirds(res.body))
+    })
   }
 }

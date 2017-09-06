@@ -20,4 +20,4 @@ export function editBirdRequest (bird) {
       dispatch(editBirdAction(bird))
     })
   }
-  }
+}

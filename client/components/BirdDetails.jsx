@@ -25,33 +25,35 @@ class BirdDetails extends React.Component {
     const {birds, dispatch, id} = this.props
     const renderBird = (bird) => (
       <div>
-      <p>{bird.name}</p>
-      <p>{bird.description}</p>
-      <p>{bird.country}</p>
-      <img src={bird.imageUrl} width="500px" height="300px"/><br/>
-      <button onClick={this.toggleForm.bind(this)}>Edit bird</button><br/>
-      <button onClick={() => dispatch(deleteBirdRequest(bird))
-        }>Lose bird</button>
-          </div>
-    )
+        <p>{bird.name}</p>
+        <p>{bird.description}</p>
+        <p>{bird.country}</p>
+        <img src={bird.imageUrl} width="500px" height="300px"/><br/>
+        <button onClick={this.toggleForm.bind(this)}>Edit bird</button><br/>
+        <button onClick={() => dispatch(deleteBirdRequest(bird))
+          }>Lose bird</button>
+        </div>
+      )
 
-    let bird = birds.find(bird => bird.id == id)
-    return (
-      <div>
-        <Link to='/'>Home</Link>
-        {bird
-          ? renderBird(bird)
-          : this.props.history.push('/')
-        }
-        {this.state.showForm ? <BirdForm bird={bird} onSubmit={this.updateBird.bind(this)}/> : ''}
-      </div>
-    )
+      let bird = birds.find(bird => bird.id == id)
+      return (
+        <div>
+          <Link to='/'>Home</Link>
+          {bird
+            ? renderBird(bird)
+            : this.props.history.push('/')
+          }
+          {this.state.showForm ? <BirdForm bird={bird} onSubmit={this.updateBird.bind(this)}/> : ''}
+        </div>
+      )
+    }
   }
-}
 
-function mapStateToProps(state) {
-  return {
-    birds: state.birds
+  function mapStateToProps(state) {
+    return {
+      birds: state.birds
+    }
   }
-}
+
+
 export default connect(mapStateToProps)(BirdDetails)

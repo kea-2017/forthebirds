@@ -16,7 +16,7 @@ const Birds = ({birds, dispatch}) => (
 )
 
 const mapStateToProps = (state) => {
-return {birds: state.birds}
+  return {birds: state.birds}
 }
 
 export default connect(mapStateToProps)(Birds)

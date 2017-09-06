@@ -23,7 +23,7 @@ class App extends React.Component {
     this.props.dispatch(getBirds())
   }
   saveBird(bird){
-     insertBird(bird, console.log)
+    insertBird(bird, console.log)
   }
   toggleForm() {
     this.setState({
@@ -37,19 +37,17 @@ class App extends React.Component {
         <Router>
           <div className="router">
             <Route exact path="/" component={BirdList}/>
-             {this.state.showForm && <Route exact path="/"render={(props) => <BirdForm onSubmit={this.saveBird} {...props} /> } /> }
+            {this.state.showForm && <Route exact path="/"render={(props) => <BirdForm onSubmit={this.saveBird} {...props} /> } /> }
             <Route path='/birds/:id' component={(props) => <BirdDetails id={props.match.params.id} history={props.history}/>}/>
           </div>
         </Router>
         <button onClick={() => this.toggleForm()}>{this.state.showForm
             ? 'Cancel'
             : 'Add Bird'}</button>
-      </div>
-    )
+        </div>
+      )
+    }
   }
-}
 
-//these all do the same thing
-// <Route path="/birds/:id" component={(props) => <BirdDetails {...props} />} />
-// <Route path="/birds/:id" component={BirdDetails} />
+
 export default connect()(App)

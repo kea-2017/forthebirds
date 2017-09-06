@@ -12,12 +12,12 @@ router.put('/:id', (req, res) => {
     imageUrl: req.body.imageUrl,
     country_id: req.body.country_id
   }
-  //console.log(editaBird);
+
   birdsDb.editBird(editaBird, db)
-    .then(res.redirect('/'))
-    .catch(function(err){
-      res.status(500).send(err.message)
-    })
+  .then(res.redirect('/'))
+  .catch(function(err){
+    res.status(500).send(err.message)
+  })
 })
 
 

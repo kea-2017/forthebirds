@@ -1,29 +1,28 @@
 function insertBird(bird, db) {
   return db('birds')
-    .insert(bird)
+  .insert(bird)
 }
 
 const getBirds = (db) => {
   return db('birds')
-    //.select('*')
-      .select('birds.*', 'countries.name as country')
-      .join('countries', 'birds.country_id', 'countries.id')
+  .select('birds.*', 'countries.name as country')
+  .join('countries', 'birds.country_id', 'countries.id')
 }
 
 function delBird(bird_id, db) {
   return db('birds')
-    .where('id', bird_id)
-    .del()
+  .where('id', bird_id)
+  .del()
 }
 
 function editBird(bird, db){
   return db('birds')
-    .where('id', bird.id)
-    .update(bird)
+  .where('id', bird.id)
+  .update(bird)
 }
 module.exports = {
-    insertBird,
-    getBirds,
-    delBird,
-    editBird
-  }
+  insertBird,
+  getBirds,
+  delBird,
+  editBird
+}
